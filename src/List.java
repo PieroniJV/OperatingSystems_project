@@ -57,4 +57,20 @@ public class List {
 		return list;
 	}
 	
+	public synchronized Boolean checkUserId(int id) 
+	{
+		Boolean isIdValid = false;
+		User temp;
+		Iterator<User> iter = userList.iterator();
+		while(iter.hasNext()) 
+		{
+			temp = iter.next();
+			if (temp.getEmployeeId() == id) {
+				isIdValid = true;
+			}
+		}		
+		
+		return isIdValid;
+	}
+	
 }
