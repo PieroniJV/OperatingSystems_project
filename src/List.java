@@ -1,9 +1,12 @@
 import java.util.Iterator;
+import java.io.*;
 import java.util.LinkedList;
 
 public class List {
 	private LinkedList<Bug> bugList;
 	private LinkedList<User> userList;
+	private File usersFile = new File("users.txt");
+	//private File bugsFile = new File("bugs.txt");To do
 	
 	public List() 
 	{
@@ -21,11 +24,13 @@ public class List {
 		Bug temp = new Bug(appName, dateNTime, platform, description, status);
 		bugList.add(temp);
 	}
-	public synchronized void addUser(String name,int tempNum, String email, String dept) 
+	public synchronized void addUser(String name, String email, String dept) 
 	{
-		tempNum = userList.size() + 1;
+		int tempNum = userList.size() + 1;
 		User temp = new User(name, tempNum, email, dept);
 		userList.add(temp);
+		System.out.println(getUserList());//for testing
+		writeToFile(getUserList(), usersFile);
 	}
 	
 	//Return lists
@@ -57,7 +62,7 @@ public class List {
 		return list;
 	}
 	
-	public synchronized Boolean checkUserId(int id) 
+	public synchronized Boolean checkUser(int id) 
 	{
 		Boolean isIdValid = false;
 		User temp;
@@ -71,6 +76,39 @@ public class List {
 		}		
 		
 		return isIdValid;
+	}
+	
+	public void writeToFile(String text, File f) 
+	{
+		String message;
+		try {
+			 
+            // Create a FileWriter object to write in the file
+            FileWriter fWriter = new FileWriter(f);
+ 
+            // Writing into file
+            // Note: The content taken above inside the
+            // string
+            fWriter.write(text);
+ 
+            // Printing the contents of a file
+            System.out.println(text);
+ 
+            // Closing the file writing connection
+            fWriter.close();
+ 
+            // Display message for successful execution of
+            // program on the console            
+            message =  "File is created successfully with the content.";
+        }
+ 
+        // Catch block to handle if exception occurs
+        catch (IOException e) {
+ 
+            // Print the exception
+            message = e.getMessage();
+        }
+		System.out.println(message);	
 	}
 	
 }

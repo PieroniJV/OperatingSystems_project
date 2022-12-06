@@ -34,29 +34,41 @@ public class ServerThread extends Thread {
 				if (message.equalsIgnoreCase("1")) {
 					sendMessage("Please enter ID: ");
 					message = (String) in.readObject();
+					sendMessage(message);
 
 					sendMessage("Please enter Email: ");
 					message = (String) in.readObject();
+					sendMessage(message);
 
 					// Check if credentials are correct....
 					// lib.addBook(message, message2);
 					// return boolean...
 				} else if (message.equalsIgnoreCase("2")) {
+					String tempName, tempEmail, tempDpt;
+					
 					sendMessage("Please enter name: ");
 					message = (String) in.readObject();
+					sendMessage(message);
+					tempName = message;
 
 					sendMessage("Please enter Email: ");
 					message = (String) in.readObject();
-					// CheckEmail()
+					sendMessage(message);
+					tempEmail = message;
+					// CheckEmail(tempEmail) **To do**
 
 					sendMessage("Please enter Department: ");
 					message = (String) in.readObject();
+					sendMessage(message);
+					tempDpt = message;
+					
+					lib.addUser(tempName, tempEmail, tempDpt);
 
-					// Create id
 				}
 
 				sendMessage("Please enter 1 to repeat or 2 to exit");
 				message = (String) in.readObject();
+				sendMessage(message);
 
 			} while (message.equalsIgnoreCase("1"));
 		} // Try

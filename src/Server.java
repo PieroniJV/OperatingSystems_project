@@ -42,6 +42,7 @@ public class Server {
 			}
 		}
 	}//Run
+	
 	void sendMessage(String msg)
 	{
 		try{
@@ -53,6 +54,7 @@ public class Server {
 			ioException.printStackTrace();
 		}
 	}
+	
 	public static void main(String args[])
 	{
 		Server server = new Server();
